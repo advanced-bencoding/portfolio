@@ -32,6 +32,7 @@ export class ExperienceService implements IExperienceService {
                 experience.forEach((doc) => {
                     const data = doc.data();
                     experienceData.push({
+                        id: doc.id,
                         place: data.place,
                         role: data.role,
                         description: data.description,
