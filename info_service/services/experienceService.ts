@@ -23,8 +23,14 @@ export class ExperienceService implements IExperienceService {
 
             if (!experience.empty) {
                 experience.forEach((doc) => {
+                    const data = doc.data();
                     experienceData.push({
-                        ...doc.data()
+                        place: data.place,
+                        role: data.role,
+                        description: data.description,
+                        type: data.type,
+                        startDate: data.startDate.toDate().toISOString(),
+                        endDate: data.endDate?.toDate().toISOString()
                     } as Experience)
                 });
             }
