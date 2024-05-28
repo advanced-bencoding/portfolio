@@ -12,6 +12,7 @@ experienceRoutes.get('/', async (req, res) => {
 
 experienceRoutes.post('/', async (req, res) => {
     const saveExperienceResult = await experienceController.saveExperience({
+        id: req.body.id,
         place: req.body.place,
         role: req.body.role,
         description: req.body.description,

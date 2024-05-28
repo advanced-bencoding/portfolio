@@ -4,7 +4,9 @@ import {
     Timestamp,
     addDoc,
     collection,
+    doc,
     getDocs,
+    updateDoc,
 } from 'firebase/firestore/lite';
 import db from './firebaseInit';
 import { FIREBASE_CONSTANTS } from './constants';
@@ -71,7 +73,21 @@ export class ExperienceService implements IExperienceService {
                 FIREBASE_CONSTANTS.EXPERIENCE_COLLECTION
             );
 
-            await addDoc(experienceCollection, mappedExperience);
+            // update case
+            if (experience.id) {
+                await updateDoc(
+                    doc(
+                        db,
+                        FIREBASE_CONSTANTS.EXPERIENCE_COLLECTION,
+                        experience.id
+                    ),
+                    mappedExperience as Record<string, any>
+                );
+            }
+            // insert case
+            else {
+                await addDoc(experienceCollection, mappedExperience);
+            }
 
             return {
                 success: true,
