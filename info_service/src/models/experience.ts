@@ -1,4 +1,4 @@
-import { ExperienceType } from './enum';
+import type { ExperienceType } from './enum';
 
 export interface Experience {
     role: string;

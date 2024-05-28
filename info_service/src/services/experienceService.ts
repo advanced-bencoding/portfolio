@@ -1,5 +1,5 @@
-import { Experience } from '../models/experience';
-import { Result } from '../models/result';
+import type { Experience } from '../models/experience';
+import type { Result } from '../models/result';
 import { collection, getDocs } from 'firebase/firestore/lite';
 import db from './firebaseInit';
 import { FIREBASE_CONSTANTS } from './constants';

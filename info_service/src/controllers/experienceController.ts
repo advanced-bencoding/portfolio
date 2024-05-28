@@ -1,6 +1,6 @@
 import { LOGGING_HELPER } from '../constants';
-import { Result } from '../models/result';
-import { IExperienceService } from '../services/experienceService';
+import type { Result } from '../models/result';
+import type { IExperienceService } from '../services/experienceService';
 
 const fileName = 'experienceController.ts';
 
