@@ -1,8 +1,8 @@
-import { LOGGING_HELPER } from '../constants';
 import { ExperienceType } from '../models/enum';
 import type { Experience } from '../models/experience';
 import type { Result } from '../models/result';
 import type { IExperienceService } from '../services/experienceService';
+import { LOGGING_HELPER } from '../services/logging';
 import { ERROR_MESSAGES } from '../utilities/errorMessages';
 import { VALIDATION_UTILITIES } from '../utilities/validationUtilities';
 

@@ -8,7 +8,7 @@ import {
 } from 'firebase/firestore/lite';
 import db from './firebaseInit';
 import { FIREBASE_CONSTANTS } from './constants';
-import { LOGGING_HELPER } from '../constants';
+import { LOGGING_HELPER } from './logging';
 
 const fileName = 'experienceService.ts';
 
