@@ -1,9 +1,9 @@
 import { Experience } from "../models/experience";
 import { Result } from "../models/result";
-import { Firestore, collection, getDocs } from "firebase/firestore/lite";
+import { collection, getDocs } from "firebase/firestore/lite";
 import db from "./firebaseInit";
 import { FIREBASE_CONSTANTS } from "./constants";
-import { LOGGING_HELPER } from "../globalConstants";
+import { LOGGING_HELPER } from "../constants";
 
 const fileName = "experienceService.ts";
 

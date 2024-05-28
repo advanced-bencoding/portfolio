@@ -1,6 +1,6 @@
 import express from 'express';
-import ExperienceController from '../controllers/experienceController';
 import ExperienceService from '../services/experienceService';
+import ExperienceController from '../controllers/experienceController';
 
 const experienceRoutes = express.Router();
 const experienceController = new ExperienceController(new ExperienceService());

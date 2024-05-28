@@ -1,5 +1,5 @@
 import express from 'express';
-import experienceRoutes from './routes/experienceRouter';
+import experienceRoutes from './src/routes/experienceRouter';
 
 const PORT = process.env.PORT;
 const app = express();
@@ -12,5 +12,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log("server started");
+    console.log("Server started.");
 });

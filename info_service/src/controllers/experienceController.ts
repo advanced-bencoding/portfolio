@@ -1,4 +1,4 @@
-import { LOGGING_HELPER } from "../globalConstants";
+import { LOGGING_HELPER } from "../constants";
 import { Result } from "../models/result";
 import { IExperienceService } from "../services/experienceService";
 
@@ -8,7 +8,7 @@ class ExperienceController {
     private experienceService: IExperienceService;
 
     constructor(experienceService: IExperienceService){
-        this.experienceService = experienceService;
+        this.experienceService = experienceService
     }
 
     async getExperience(): Promise<Result> {
