@@ -72,7 +72,7 @@ const experienceValidator = (experience: Experience): string | undefined => {
         errorMessages.push(ERROR_MESSAGES.mandatoryField('role'));
     }
     if (
-        experience === undefined ||
+        experience.type === undefined ||
         experience.type === ExperienceType.UNDEFINED
     ) {
         errorMessages.push(
