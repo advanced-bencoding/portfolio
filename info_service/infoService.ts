@@ -8,9 +8,9 @@ app.use(express.json());
 app.use('/experience', experienceRoutes);
 
 app.get('/', (req, res) => {
-    res.send("Hello World");
+    res.send('Hello World');
 });
 
 app.listen(PORT, () => {
-    console.log("Server started.");
+    console.log('Server started.');
 });
