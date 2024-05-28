@@ -4,5 +4,7 @@ export const LOGGING_HELPER = {
     exitLog: (fileName: string, methodName: string) =>
         `Finished executing ${methodName} in ${fileName}.`,
     errorLog: (fileName: string, methodName: string, errorMessage?: string) =>
-        `Error occured ehile executing ${methodName} in ${fileName}${errorMessage !== undefined ? `: ${errorMessage}` : ''}.`,
+        `Error occured while executing ${methodName} in ${fileName}${errorMessage !== undefined ? `: ${errorMessage}` : ''}`,
+    requestObjectLog: (object: any) =>
+        `Object recieved in request: ${JSON.stringify(object)}`,
 };

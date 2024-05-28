@@ -10,4 +10,17 @@ experienceRoutes.get('/', async (req, res) => {
     res.send(experienceResult);
 });
 
+experienceRoutes.post('/', async (req, res) => {
+    const saveExperienceResult = await experienceController.saveExperience({
+        place: req.body.place,
+        role: req.body.role,
+        description: req.body.description,
+        type: req.body.type,
+        startDate: req.body.startDate,
+        endDate: req.body.endDate,
+    });
+
+    res.send(saveExperienceResult);
+});
+
 export default experienceRoutes;

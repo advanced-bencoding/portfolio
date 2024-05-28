@@ -1,7 +1,8 @@
+import type { FirebaseOptions } from 'firebase/app';
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore/lite';
 
-const firebaseConfig = {
+const firebaseConfig: FirebaseOptions = {
     apiKey: process.env.API_KEY,
     authDomain: process.env.AUTH_DOMAIN,
     projectId: process.env.PROJECT_ID,
@@ -13,4 +14,5 @@ const firebaseConfig = {
 
 const firebaseConnection = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseConnection);
+
 export default db;
