@@ -1,6 +1,6 @@
 import type { FieldValue, Timestamp } from "firebase/firestore/lite";
-import type { ExperienceType } from "./enum";
 import joi from "joi";
+import { EXPERIENCE_TYPES, type ExperienceType } from "./types";
 
 export interface Experience {
     id?: string;
@@ -17,9 +17,9 @@ export const ExperienceSchema = joi.object({
     role: joi.string().required(),
     place: joi.string().required(),
     description: joi.string(),
-    startDate: joi.string().required(),
-    endDate: joi.string(),
-    type: joi.number().strict().integer().min(0).max(2),
+    startDate: joi.string().isoDate().required(),
+    endDate: joi.string().isoDate(),
+    type: joi.string().equal([EXPERIENCE_TYPES.WORK, EXPERIENCE_TYPES.EDUCATION]),
 });
 
 export interface ExperienceFirestore {
@@ -28,5 +28,5 @@ export interface ExperienceFirestore {
     description?: FieldValue | string;
     startDate: Timestamp;
     endDate?: FieldValue | Timestamp;
-    type: number;
+    type: ExperienceType;
 }

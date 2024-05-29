@@ -41,7 +41,7 @@ class ExperienceController {
             const validationResult = ExperienceSchema.validate(experience, {
                 abortEarly: false,
             });
-            // const validationString = experienceValidator(experience);
+
             if (validationResult.error !== undefined) {
                 throw new Error(
                     validationResult.error.details
