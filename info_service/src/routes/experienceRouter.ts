@@ -20,8 +20,14 @@ experienceRoutes.post('/', async (req, res) => {
         startDate: req.body.startDate,
         endDate: req.body.endDate,
     });
-
     res.send(saveExperienceResult);
+});
+
+experienceRoutes.delete('/:experienceId', async (req, res) => {
+    const deleteExperienceResult = await experienceController.deleteExperience(
+        req.params.experienceId
+    );
+    res.send(deleteExperienceResult);
 });
 
 export default experienceRoutes;

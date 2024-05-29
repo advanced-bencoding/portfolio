@@ -4,20 +4,23 @@ import {
     Timestamp,
     addDoc,
     collection,
+    deleteDoc,
     doc,
+    getDoc,
     getDocs,
     updateDoc,
 } from 'firebase/firestore/lite';
 import db from './firebaseInit';
 import { FIREBASE_CONSTANTS } from './constants';
 import { LOGGING_HELPER } from './logging';
+import { ERROR_MESSAGES } from '../utilities/errorMessages';
 
 const fileName = 'experienceService.ts';
 
 export interface IExperienceService {
     getExperience: () => Promise<Result>;
     saveExperience: (experience: Experience) => Promise<Result>;
-    deleteExperience: (experience: Experience) => Promise<Result>;
+    deleteExperience: (experienceId: string) => Promise<Result>;
 }
 
 export class ExperienceService implements IExperienceService {
@@ -104,10 +107,35 @@ export class ExperienceService implements IExperienceService {
             console.log(LOGGING_HELPER.exitLog(fileName, methodName));
         }
     }
-    async deleteExperience(experience: Experience): Promise<Result> {
-        return {
-            success: true,
-        };
+    async deleteExperience(experienceId: string): Promise<Result> {
+        const methodName = 'deleteExperience';
+        console.log(LOGGING_HELPER.entryLog(fileName, methodName));
+        try {
+            const docToDelete = doc(
+                db,
+                FIREBASE_CONSTANTS.EXPERIENCE_COLLECTION,
+                experienceId
+            );
+            const docSnapshot = await getDoc(docToDelete);
+
+            if (!docSnapshot.exists()) {
+                throw new Error(ERROR_MESSAGES.inexistentDocument(experienceId));
+            }
+            await deleteDoc(docToDelete);
+            return {
+                success: true,
+            };
+        } catch (error: any) {
+            console.error(
+                LOGGING_HELPER.errorLog(fileName, methodName, error.message)
+            );
+            return {
+                success: false,
+                message: error.message,
+            };
+        } finally {
+            console.log(LOGGING_HELPER.exitLog(fileName, methodName));
+        }
     }
 }
 

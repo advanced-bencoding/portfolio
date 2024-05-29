@@ -61,6 +61,31 @@ class ExperienceController {
             console.log(LOGGING_HELPER.exitLog(fileName, methodName));
         }
     }
+
+    async deleteExperience(experienceId: string): Promise<Result> {
+        const methodName = 'deleteExperience';
+        console.log(LOGGING_HELPER.entryLog(fileName, methodName));
+        try {
+            if (VALIDATION_UTILITIES.isUndefinedOrEmpty(experienceId)) {
+                throw new Error(ERROR_MESSAGES.mandatoryField(experienceId));
+            }
+
+            const deleteResult =
+                await this.experienceService.deleteExperience(experienceId);
+            return deleteResult;
+        } catch (error: any) {
+            console.error(
+                LOGGING_HELPER.errorLog(fileName, methodName, error.message)
+            );
+            console.log(LOGGING_HELPER.requestObjectLog(experienceId));
+            return {
+                success: false,
+                message: error.message,
+            };
+        } finally {
+            console.log(LOGGING_HELPER.exitLog(fileName, methodName));
+        }
+    }
 }
 
 const experienceValidator = (experience: Experience): string | undefined => {

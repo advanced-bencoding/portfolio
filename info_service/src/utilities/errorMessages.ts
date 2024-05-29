@@ -4,4 +4,6 @@ export const ERROR_MESSAGES = {
         `Given date in ${field} is invalid.`,
     enumMismatch: (field: string, options: string[]): string =>
         `Invalid ${field} given. Given value must be from: '${options.join(', ')}'.`,
+    inexistentDocument: (documentId: string): string =>
+        `Document with id: '${documentId}' does not exist.`,
 };
