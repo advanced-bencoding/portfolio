@@ -10,7 +10,7 @@
         "format": "prettier . --write",
         "start:dev": "dotenvx run --env PORT=3001 -f .env -- node ./dist/infoService.js",
         "lint": "eslint .",
-        "fixcode": "npm run format && eslint --fix"
+        "fixcode": "npm run format && eslint --ignore-pattern dist/ --fix"
     },
     "keywords": [],
     "author": "",
