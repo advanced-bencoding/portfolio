@@ -78,6 +78,20 @@ export class ExperienceService implements IExperienceService {
 
             // update case
             if (experience.id) {
+                const docToUpdate = doc(
+                    db,
+                    FIREBASE_CONSTANTS.EXPERIENCE_COLLECTION,
+                    experience.id
+                );
+
+                // check for existence
+                const docSnapshot = await getDoc(docToUpdate);
+                if (!docSnapshot.exists()) {
+                    throw new Error(
+                        ERROR_MESSAGES.inexistentDocument(experience.id)
+                    );
+                }
+
                 await updateDoc(
                     doc(
                         db,
@@ -116,11 +130,15 @@ export class ExperienceService implements IExperienceService {
                 FIREBASE_CONSTANTS.EXPERIENCE_COLLECTION,
                 experienceId
             );
-            const docSnapshot = await getDoc(docToDelete);
 
+            // check for existence
+            const docSnapshot = await getDoc(docToDelete);
             if (!docSnapshot.exists()) {
-                throw new Error(ERROR_MESSAGES.inexistentDocument(experienceId));
+                throw new Error(
+                    ERROR_MESSAGES.inexistentDocument(experienceId)
+                );
             }
+
             await deleteDoc(docToDelete);
             return {
                 success: true,
