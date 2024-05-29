@@ -49,6 +49,8 @@ export class ExperienceService implements IExperienceService {
                 });
             }
 
+            experienceData.sort((a: Experience, b: Experience) => a.startDate < b.startDate ? 1 : -1)
+
             return {
                 data: experienceData,
                 success: true,
