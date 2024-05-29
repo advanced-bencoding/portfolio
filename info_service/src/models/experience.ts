@@ -21,7 +21,7 @@ export const ExperienceSchema = joi.object({
     endDate: joi.string().isoDate(),
     type: joi
         .string()
-        .equal([EXPERIENCE_TYPES.WORK, EXPERIENCE_TYPES.EDUCATION]),
+        .equal(EXPERIENCE_TYPES.WORK, EXPERIENCE_TYPES.EDUCATION),
 });
 
 export interface ExperienceFirestore {
