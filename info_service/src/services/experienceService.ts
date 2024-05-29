@@ -5,6 +5,7 @@ import {
     addDoc,
     collection,
     deleteDoc,
+    deleteField,
     doc,
     getDoc,
     getDocs,
@@ -169,10 +170,14 @@ const mapExperienceToExperienceFirestore = (
 
     if (experience.description) {
         mappedObject.description = experience.description;
+    } else if (experience.id) {
+        mappedObject.description = deleteField();
     }
 
     if (experience.endDate) {
         mappedObject.endDate = Timestamp.fromDate(new Date(experience.endDate));
+    } else if (experience.id) {
+        mappedObject.endDate = deleteField();
     }
 
     return mappedObject;

@@ -1,4 +1,4 @@
-import type { Timestamp } from "firebase/firestore/lite";
+import type { FieldValue, Timestamp } from "firebase/firestore/lite";
 import type { ExperienceType } from "./enum";
 
 export interface Experience {
@@ -14,8 +14,8 @@ export interface Experience {
 export interface ExperienceFirestore {
     role: string;
     place: string;
-    description?: string;
+    description?: FieldValue | string;
     startDate: Timestamp;
-    endDate?: Timestamp;
+    endDate?: FieldValue | Timestamp;
     type: number;
 }
