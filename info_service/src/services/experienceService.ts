@@ -1,5 +1,5 @@
-import type { Experience, ExperienceFirestore } from '../models/experience';
-import type { Result } from '../models/result';
+import type { Experience, ExperienceFirestore } from "../models/experience";
+import type { Result } from "../models/result";
 import {
     Timestamp,
     addDoc,
@@ -9,13 +9,13 @@ import {
     getDoc,
     getDocs,
     updateDoc,
-} from 'firebase/firestore/lite';
-import db from './firebaseInit';
-import { FIREBASE_CONSTANTS } from './constants';
-import { LOGGING_HELPER } from './logging';
-import { ERROR_MESSAGES } from '../utilities/errorMessages';
+} from "firebase/firestore/lite";
+import db from "./firebaseInit";
+import { FIREBASE_CONSTANTS } from "./constants";
+import { LOGGING_HELPER } from "./logging";
+import { ERROR_MESSAGES } from "../utilities/errorMessages";
 
-const fileName = 'experienceService.ts';
+const fileName = "experienceService.ts";
 
 export interface IExperienceService {
     getExperience: () => Promise<Result>;
@@ -25,7 +25,7 @@ export interface IExperienceService {
 
 export class ExperienceService implements IExperienceService {
     async getExperience(): Promise<Result> {
-        const methodName = 'getExperience';
+        const methodName = "getExperience";
         console.log(LOGGING_HELPER.entryLog(fileName, methodName));
         try {
             const experience = await getDocs(
@@ -66,7 +66,7 @@ export class ExperienceService implements IExperienceService {
     }
 
     async saveExperience(experience: Experience): Promise<Result> {
-        const methodName = 'saveExperience';
+        const methodName = "saveExperience";
         console.log(LOGGING_HELPER.entryLog(fileName, methodName));
         try {
             const mappedExperience =
@@ -122,7 +122,7 @@ export class ExperienceService implements IExperienceService {
         }
     }
     async deleteExperience(experienceId: string): Promise<Result> {
-        const methodName = 'deleteExperience';
+        const methodName = "deleteExperience";
         console.log(LOGGING_HELPER.entryLog(fileName, methodName));
         try {
             const docToDelete = doc(

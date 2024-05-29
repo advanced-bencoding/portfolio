@@ -1,16 +1,16 @@
-import express from 'express';
-import ExperienceService from '../services/experienceService';
-import ExperienceController from '../controllers/experienceController';
+import express from "express";
+import ExperienceService from "../services/experienceService";
+import ExperienceController from "../controllers/experienceController";
 
 const experienceRoutes = express.Router();
 const experienceController = new ExperienceController(new ExperienceService());
 
-experienceRoutes.get('/', async (req, res) => {
+experienceRoutes.get("/", async (req, res) => {
     const experienceResult = await experienceController.getExperience();
     res.send(experienceResult);
 });
 
-experienceRoutes.post('/', async (req, res) => {
+experienceRoutes.post("/", async (req, res) => {
     const saveExperienceResult = await experienceController.saveExperience({
         id: req.body.id,
         place: req.body.place,
@@ -23,7 +23,7 @@ experienceRoutes.post('/', async (req, res) => {
     res.send(saveExperienceResult);
 });
 
-experienceRoutes.delete('/:experienceId', async (req, res) => {
+experienceRoutes.delete("/:experienceId", async (req, res) => {
     const deleteExperienceResult = await experienceController.deleteExperience(
         req.params.experienceId
     );

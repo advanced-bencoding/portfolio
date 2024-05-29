@@ -1,11 +1,11 @@
-import express from 'express';
-import experienceRoutes from './src/routes/experienceRouter';
+import express from "express";
+import experienceRoutes from "./src/routes/experienceRouter";
 import {
     requestLogger,
     routingErrorHandling,
-} from './src/utilities/middleware';
-import type { Result } from './src/models/result';
-import { ERROR_MESSAGES } from './src/utilities/errorMessages';
+} from "./src/utilities/middleware";
+import type { Result } from "./src/models/result";
+import { ERROR_MESSAGES } from "./src/utilities/errorMessages";
 
 const PORT = process.env.PORT;
 const app = express();
@@ -16,15 +16,15 @@ app.use(requestLogger);
 app.use(routingErrorHandling);
 
 // routes
-app.use('/experience', experienceRoutes);
+app.use("/experience", experienceRoutes);
 
-app.get('/', (_req, res) => {
-    res.send('Hello World');
+app.get("/", (_req, res) => {
+    res.send("Hello World");
 });
 
 // fallback
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-app.all('/*', (req, res, _next) => {
+app.all("/*", (req, res, _next) => {
     const errorMessage = ERROR_MESSAGES.invalidMethodOrUrl(req);
     console.error(errorMessage);
     res.send({
@@ -35,5 +35,5 @@ app.all('/*', (req, res, _next) => {
 
 // start
 app.listen(PORT, () => {
-    console.log('Server started.');
+    console.log("Server started.");
 });

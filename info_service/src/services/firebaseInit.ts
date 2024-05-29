@@ -1,6 +1,6 @@
-import type { FirebaseOptions } from 'firebase/app';
-import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore/lite';
+import type { FirebaseOptions } from "firebase/app";
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore/lite";
 
 const firebaseConfig: FirebaseOptions = {
     apiKey: process.env.API_KEY,

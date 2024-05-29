@@ -1,6 +1,6 @@
-import type { NextFunction, Request, Response } from 'express';
-import type { Result } from '../models/result';
-import { LOGGING_HELPER } from '../services/logging';
+import type { NextFunction, Request, Response } from "express";
+import type { Result } from "../models/result";
+import { LOGGING_HELPER } from "../services/logging";
 
 export const routingErrorHandling = (
     err: any,
@@ -21,11 +21,11 @@ export const requestLogger = (
     res: Response,
     next: NextFunction
 ) => {
-    console.log(LOGGING_HELPER.logRequest(req, 'START'));
+    console.log(LOGGING_HELPER.logRequest(req, "START"));
 
     next();
 
-    res.once('finish', () => {
-        console.log(LOGGING_HELPER.logRequest(req, 'END'));
+    res.once("finish", () => {
+        console.log(LOGGING_HELPER.logRequest(req, "END"));
     });
 };

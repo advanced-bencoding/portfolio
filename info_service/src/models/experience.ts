@@ -1,5 +1,5 @@
-import type { Timestamp } from 'firebase/firestore/lite';
-import type { ExperienceType } from './enum';
+import type { Timestamp } from "firebase/firestore/lite";
+import type { ExperienceType } from "./enum";
 
 export interface Experience {
     id?: string;
