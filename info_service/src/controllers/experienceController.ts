@@ -1,5 +1,4 @@
-import { ExperienceType } from "../models/enum";
-import type { Experience } from "../models/experience";
+import { ExperienceSchema, type Experience } from "../models/experience";
 import type { Result } from "../models/result";
 import type { IExperienceService } from "../services/experienceService";
 import { LOGGING_HELPER } from "../services/logging";
@@ -39,9 +38,16 @@ class ExperienceController {
         console.log(LOGGING_HELPER.entryLog(fileName, methodName));
         try {
             // validate request object
-            const validationString = experienceValidator(experience);
-            if (validationString !== undefined) {
-                throw new Error(validationString);
+            const validationResult = ExperienceSchema.validate(experience, {
+                abortEarly: false,
+            });
+            // const validationString = experienceValidator(experience);
+            if (validationResult.error !== undefined) {
+                throw new Error(
+                    validationResult.error.details
+                        .map((detail) => detail.message)
+                        .join(", ")
+                );
             }
 
             // save to db
@@ -88,34 +94,34 @@ class ExperienceController {
     }
 }
 
-const experienceValidator = (experience: Experience): string | undefined => {
-    const errorMessages: string[] = [];
-    if (VALIDATION_UTILITIES.isUndefinedOrEmpty(experience.place)) {
-        errorMessages.push(ERROR_MESSAGES.mandatoryField("place"));
-    }
-    if (VALIDATION_UTILITIES.isUndefinedOrEmpty(experience.role)) {
-        errorMessages.push(ERROR_MESSAGES.mandatoryField("role"));
-    }
-    if (
-        experience.type === undefined ||
-        experience.type === ExperienceType.UNDEFINED
-    ) {
-        errorMessages.push(
-            ERROR_MESSAGES.enumMismatch("role", Object.keys(ExperienceType))
-        );
-    }
-    if (VALIDATION_UTILITIES.isInvalidIsoString(experience.startDate)) {
-        errorMessages.push(ERROR_MESSAGES.invalidDate("startDate"));
-    }
-    if (
-        experience.endDate &&
-        VALIDATION_UTILITIES.isInvalidIsoString(experience.endDate)
-    ) {
-        errorMessages.push(ERROR_MESSAGES.invalidDate("endDate"));
-    }
+// const experienceValidator = (experience: Experience): string | undefined => {
+//     const errorMessages: string[] = [];
+//     if (VALIDATION_UTILITIES.isUndefinedOrEmpty(experience.place)) {
+//         errorMessages.push(ERROR_MESSAGES.mandatoryField("place"));
+//     }
+//     if (VALIDATION_UTILITIES.isUndefinedOrEmpty(experience.role)) {
+//         errorMessages.push(ERROR_MESSAGES.mandatoryField("role"));
+//     }
+//     if (
+//         experience.type === undefined ||
+//         experience.type === ExperienceType.UNDEFINED
+//     ) {
+//         errorMessages.push(
+//             ERROR_MESSAGES.enumMismatch("role", Object.keys(ExperienceType))
+//         );
+//     }
+//     if (VALIDATION_UTILITIES.isInvalidIsoString(experience.startDate)) {
+//         errorMessages.push(ERROR_MESSAGES.invalidDate("startDate"));
+//     }
+//     if (
+//         experience.endDate &&
+//         VALIDATION_UTILITIES.isInvalidIsoString(experience.endDate)
+//     ) {
+//         errorMessages.push(ERROR_MESSAGES.invalidDate("endDate"));
+//     }
 
-    if (errorMessages.length === 0) return undefined;
-    return errorMessages.join("\n");
-};
+//     if (errorMessages.length === 0) return undefined;
+//     return errorMessages.join("\n");
+// };
 
 export default ExperienceController;

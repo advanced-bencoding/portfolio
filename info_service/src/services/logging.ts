@@ -11,4 +11,6 @@ export const LOGGING_HELPER = {
         `[${new Date().toISOString()}] Object recieved in request: ${JSON.stringify(object)}`,
     logRequest: (req: Request, logTime: "START" | "END") =>
         `[${new Date().toISOString()}] ${logTime}: ${req.method} ${req.originalUrl}`,
+    logMessageWithTimestamp: (message: string) =>
+        `[${new Date().toISOString()}] ${message}`,
 };
