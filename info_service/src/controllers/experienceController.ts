@@ -94,34 +94,4 @@ class ExperienceController {
     }
 }
 
-// const experienceValidator = (experience: Experience): string | undefined => {
-//     const errorMessages: string[] = [];
-//     if (VALIDATION_UTILITIES.isUndefinedOrEmpty(experience.place)) {
-//         errorMessages.push(ERROR_MESSAGES.mandatoryField("place"));
-//     }
-//     if (VALIDATION_UTILITIES.isUndefinedOrEmpty(experience.role)) {
-//         errorMessages.push(ERROR_MESSAGES.mandatoryField("role"));
-//     }
-//     if (
-//         experience.type === undefined ||
-//         experience.type === ExperienceType.UNDEFINED
-//     ) {
-//         errorMessages.push(
-//             ERROR_MESSAGES.enumMismatch("role", Object.keys(ExperienceType))
-//         );
-//     }
-//     if (VALIDATION_UTILITIES.isInvalidIsoString(experience.startDate)) {
-//         errorMessages.push(ERROR_MESSAGES.invalidDate("startDate"));
-//     }
-//     if (
-//         experience.endDate &&
-//         VALIDATION_UTILITIES.isInvalidIsoString(experience.endDate)
-//     ) {
-//         errorMessages.push(ERROR_MESSAGES.invalidDate("endDate"));
-//     }
-
-//     if (errorMessages.length === 0) return undefined;
-//     return errorMessages.join("\n");
-// };
-
 export default ExperienceController;
