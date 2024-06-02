@@ -35,7 +35,7 @@ projectRoutes.delete("/:projectId", async (req, res) => {
     const projectResponse = await projectController.deleteProject(
         req.params.projectId
     );
-    return projectResponse;
+    res.send(projectResponse);
 });
 
 export default projectRoutes;
