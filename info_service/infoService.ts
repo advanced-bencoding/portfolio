@@ -6,6 +6,7 @@ import {
 } from "./src/utilities/middleware";
 import type { Result } from "./src/models/result";
 import { ERROR_MESSAGES } from "./src/utilities/errorMessages";
+import projectRoutes from "./src/routes/projectRouter";
 
 const PORT = process.env.PORT;
 const app = express();
@@ -17,6 +18,7 @@ app.use(routingErrorHandling);
 
 // routes
 app.use("/experience", experienceRoutes);
+app.use("/project", projectRoutes);
 
 app.get("/", (_req, res) => {
     res.send("Hello World");
