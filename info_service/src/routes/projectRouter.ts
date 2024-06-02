@@ -6,16 +6,18 @@ const projectRoutes = express.Router();
 const projectController = new ProjectController(new ProjectService());
 
 projectRoutes
-.get('/', async (_req, res) => {
-    const projectResponse = await projectController.getProject();
-    res.send(projectResponse);
-})
-.get('/:projectId', async (req, res) => {
-    const projectResponse = await projectController.getProject(req.params.projectId);
-    return res.send(projectResponse);
-})
+    .get("/", async (_req, res) => {
+        const projectResponse = await projectController.getProject();
+        res.send(projectResponse);
+    })
+    .get("/:projectId", async (req, res) => {
+        const projectResponse = await projectController.getProject(
+            req.params.projectId
+        );
+        return res.send(projectResponse);
+    });
 
-projectRoutes.post('/', async (req, res) => {
+projectRoutes.post("/", async (req, res) => {
     const projectResponse = await projectController.saveProject({
         id: req.body.id,
         title: req.body.title,
@@ -27,11 +29,13 @@ projectRoutes.post('/', async (req, res) => {
         endDate: req.body.endDate,
     });
     return res.send(projectResponse);
-})
+});
 
-projectRoutes.delete('/:projectId', async (req, res) => {
-    const projectResponse = await projectController.deleteProject(req.params.projectId);
+projectRoutes.delete("/:projectId", async (req, res) => {
+    const projectResponse = await projectController.deleteProject(
+        req.params.projectId
+    );
     return projectResponse;
-})
+});
 
 export default projectRoutes;
