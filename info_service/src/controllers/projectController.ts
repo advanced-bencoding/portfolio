@@ -1,4 +1,4 @@
-import type { Project } from "../models/project";
+import { ProjectSchema, type Project } from "../models/project";
 import { LOGGING_HELPER } from "../services/logging";
 import type { IProjectService } from "../services/projectService";
 
@@ -35,6 +35,18 @@ class ProjectController {
         console.log(LOGGING_HELPER.entryLog(fileName, methodName));
 
         try {
+            // validate request object
+            const validationResult = ProjectSchema.validate(project, {
+                abortEarly: false,
+            });
+
+            if (validationResult.error !== undefined) {
+                throw new Error(
+                    validationResult.error.details
+                        .map((detail) => detail.message)
+                        .join(", ")
+                );
+            }
             const projectData = await this.projectService.saveProject(project);
             return projectData;
         } catch (error: any) {
