@@ -20,10 +20,6 @@ app.use(routingErrorHandling);
 app.use("/experience", experienceRoutes);
 app.use("/project", projectRoutes);
 
-app.get("/", (_req, res) => {
-    res.send("Hello World");
-});
-
 // fallback
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 app.all("/*", (req, res, _next) => {
