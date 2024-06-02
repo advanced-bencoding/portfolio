@@ -14,20 +14,10 @@ class ProjectController {
         const methodName = "getProject";
         console.log(LOGGING_HELPER.entryLog(fileName, methodName));
 
-        try {
-            const projectData = await this.projectService.getProject(projectId);
-            return projectData;
-        } catch (error: any) {
-            console.error(
-                LOGGING_HELPER.errorLog(fileName, methodName, error.message)
-            );
-            return {
-                success: false,
-                message: error.message,
-            };
-        } finally {
-            console.log(LOGGING_HELPER.exitLog(fileName, methodName));
-        }
+        const projectData = await this.projectService.getProject(projectId);
+
+        console.log(LOGGING_HELPER.exitLog(fileName, methodName));
+        return projectData;
     }
 
     async saveProject(project: Project) {
@@ -66,21 +56,10 @@ class ProjectController {
         const methodName = "deleteProject";
         console.log(LOGGING_HELPER.entryLog(fileName, methodName));
 
-        try {
-            const projectData =
-                await this.projectService.deleteProject(projectId);
-            return projectData;
-        } catch (error: any) {
-            console.error(
-                LOGGING_HELPER.errorLog(fileName, methodName, error.message)
-            );
-            return {
-                success: false,
-                message: error.message,
-            };
-        } finally {
-            console.log(LOGGING_HELPER.exitLog(fileName, methodName));
-        }
+        const projectData = await this.projectService.deleteProject(projectId);
+
+        console.log(LOGGING_HELPER.exitLog(fileName, methodName));
+        return projectData;
     }
 }
 
