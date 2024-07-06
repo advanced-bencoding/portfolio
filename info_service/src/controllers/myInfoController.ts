@@ -37,6 +37,8 @@ export class MyInfoController {
                         .join(", ")
                 );
             }
+            const saveResult = this.myinfoService.saveMyInfo(myInfo);
+            return saveResult;
         } catch (error: any) {
             console.error(
                 LOGGING_HELPER.errorLog(fileName, methodName, error.message)

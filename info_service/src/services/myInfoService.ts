@@ -2,6 +2,7 @@ import type { MyInfo } from "../models/myInfo";
 import type { Result } from "../models/result";
 import fs from "fs/promises";
 import { LOGGING_HELPER } from "./logging";
+import path from "path"
 
 const fileName = "experienceService.ts";
 
@@ -16,7 +17,6 @@ const checkIfFileExists = async (): Promise<boolean> => {
         await file.close();
         return true;
     } catch (_) {
-        // await fs.writeFile(process.env.MY_INFO_PATH as string, JSON.stringify({}, null, 2))
         return false;
     }
 };
@@ -69,6 +69,8 @@ export class MyInfoService implements IMyInfoService {
         const methodName = "saveMyInfo";
         console.log(LOGGING_HELPER.entryLog(fileName, methodName));
         try {
+            const dir = path.dirname(process.env.MY_INFO_PATH as string);
+            await fs.mkdir(dir, { recursive: true });
             await fs.writeFile(
                 process.env.MY_INFO_PATH as string,
                 JSON.stringify(myInfo, null, 2)
