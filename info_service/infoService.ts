@@ -7,6 +7,7 @@ import {
 import type { Result } from "./src/models/result";
 import { ERROR_MESSAGES } from "./src/utilities/errorMessages";
 import projectRoutes from "./src/routes/projectRouter";
+import { myInfoRoutes } from "./src/routes/myInfoRouter";
 
 const PORT = process.env.PORT;
 const app = express();
@@ -19,6 +20,7 @@ app.use(routingErrorHandling);
 // routes
 app.use("/experience", experienceRoutes);
 app.use("/project", projectRoutes);
+app.use("/myInfo", myInfoRoutes);
 
 // fallback
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

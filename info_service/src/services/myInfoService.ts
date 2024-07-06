@@ -66,8 +66,26 @@ export class MyInfoService implements IMyInfoService {
     }
 
     async saveMyInfo(myInfo: MyInfo): Promise<Result> {
-        return new Promise(() => {
-            console.log(myInfo);
-        });
+        const methodName = "saveMyInfo";
+        console.log(LOGGING_HELPER.entryLog(fileName, methodName));
+        try {
+            await fs.writeFile(
+                process.env.MY_INFO_PATH as string,
+                JSON.stringify(myInfo, null, 2)
+            );
+            return {
+                success: true,
+            };
+        } catch (error: any) {
+            console.error(
+                LOGGING_HELPER.errorLog(fileName, methodName, error.message)
+            );
+            return {
+                success: false,
+                message: error.message,
+            };
+        } finally {
+            console.log(LOGGING_HELPER.exitLog(fileName, methodName));
+        }
     }
 }
