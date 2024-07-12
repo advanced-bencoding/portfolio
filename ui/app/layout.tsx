@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import NavigationButton from "./components/NavigationButton";
+import Link from "next/link";
+import { constants } from "buffer";
+import { NavButtons } from "./constants";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,8 +19,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-theme="forest">
-      <body className={inter.className}>
-          {children}
+      <body className={inter.className} style={{ height: "100vh" }}>
+          <div className="flex">
+            <Link href="/projects" className="mr-20 text-2xl">{NavButtons.PROJECTS}</Link>
+            <Link href="/career"  className="mr-20 text-2xl">{NavButtons.CAREER}</Link>
+            <Link href="/education"  className="mr-20 text-2xl">{NavButtons.EDUCATION}</Link>
+            <Link href="/about"  className="mr-20 text-2xl">{NavButtons.ABOUT}</Link>
+          </div>
+          <div className="flex-col">
+            {children}
+          </div>
       </body>
     </html>
   );
