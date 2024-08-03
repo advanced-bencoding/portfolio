@@ -19,13 +19,13 @@ import { ERROR_MESSAGES } from "../utilities/errorMessages";
 const fileName = "experienceService.ts";
 
 export interface IExperienceService {
-    getExperience: () => Promise<Result>;
-    saveExperience: (experience: Experience) => Promise<Result>;
-    deleteExperience: (experienceId: string) => Promise<Result>;
+    getExperience: () => Promise<Result<Experience[]>>;
+    saveExperience: (experience: Experience) => Promise<Result<undefined>>;
+    deleteExperience: (experienceId: string) => Promise<Result<undefined>>;
 }
 
 export class ExperienceService implements IExperienceService {
-    async getExperience(): Promise<Result> {
+    async getExperience(): Promise<Result<Experience[]>> {
         const methodName = "getExperience";
         console.log(LOGGING_HELPER.entryLog(fileName, methodName));
         try {
@@ -45,7 +45,7 @@ export class ExperienceService implements IExperienceService {
                         type: data.type,
                         startDate: data.startDate.toDate().toISOString(),
                         endDate: data.endDate?.toDate().toISOString(),
-                    } as Experience);
+                    });
                 });
             }
 
@@ -70,7 +70,7 @@ export class ExperienceService implements IExperienceService {
         }
     }
 
-    async saveExperience(experience: Experience): Promise<Result> {
+    async saveExperience(experience: Experience): Promise<Result<undefined>> {
         const methodName = "saveExperience";
         console.log(LOGGING_HELPER.entryLog(fileName, methodName));
         try {
@@ -126,7 +126,7 @@ export class ExperienceService implements IExperienceService {
             console.log(LOGGING_HELPER.exitLog(fileName, methodName));
         }
     }
-    async deleteExperience(experienceId: string): Promise<Result> {
+    async deleteExperience(experienceId: string): Promise<Result<undefined>> {
         const methodName = "deleteExperience";
         console.log(LOGGING_HELPER.entryLog(fileName, methodName));
         try {

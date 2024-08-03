@@ -17,14 +17,14 @@ import { FIREBASE_CONSTANTS } from "./constants";
 import { ERROR_MESSAGES } from "../utilities/errorMessages";
 
 export interface IProjectService {
-    getProject: (id?: string) => Promise<Result>;
-    saveProject: (project: Project) => Promise<Result>;
-    deleteProject: (projectId: string) => Promise<Result>;
+    getProject: (id?: string) => Promise<Result<Project[]>>;
+    saveProject: (project: Project) => Promise<Result<undefined>>;
+    deleteProject: (projectId: string) => Promise<Result<undefined>>;
 }
 
 const fileName = "projectService.ts";
 export class ProjectService implements IProjectService {
-    async getProject(id?: string | undefined): Promise<Result> {
+    async getProject(id?: string | undefined): Promise<Result<Project[]>> {
         const methodName = "getProject";
         try {
             console.log(LOGGING_HELPER.entryLog(fileName, methodName));
@@ -55,12 +55,12 @@ export class ProjectService implements IProjectService {
             const projects = await getDocs(
                 collection(db, FIREBASE_CONSTANTS.PROJECT_COLLECTION)
             );
-            const experienceData: Project[] = [];
+            const projectData: Project[] = [];
 
             if (!projects.empty) {
                 projects.forEach((doc) => {
                     const data = doc.data();
-                    experienceData.push(
+                    projectData.push(
                         mapProjectFireStoreToProjectModel(
                             data as ProjectFirestore,
                             doc.id
@@ -71,7 +71,7 @@ export class ProjectService implements IProjectService {
 
             return {
                 success: true,
-                data: experienceData,
+                data: projectData,
             };
         } catch (error: any) {
             console.error(

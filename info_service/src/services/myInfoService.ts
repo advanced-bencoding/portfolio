@@ -7,8 +7,8 @@ import path from "path"
 const fileName = "experienceService.ts";
 
 export interface IMyInfoService {
-    getMyInfo: () => Promise<Result>;
-    saveMyInfo: (myInfo: MyInfo) => Promise<Result>;
+    getMyInfo: () => Promise<Result<MyInfo>>;
+    saveMyInfo: (myInfo: MyInfo) => Promise<Result<undefined>>;
 }
 
 const checkIfFileExists = async (): Promise<boolean> => {
@@ -22,7 +22,7 @@ const checkIfFileExists = async (): Promise<boolean> => {
 };
 
 export class MyInfoService implements IMyInfoService {
-    async getMyInfo(): Promise<Result> {
+    async getMyInfo(): Promise<Result<MyInfo>> {
         const methodName = "getExperience";
         console.log(LOGGING_HELPER.entryLog(fileName, methodName));
         try {
@@ -49,7 +49,7 @@ export class MyInfoService implements IMyInfoService {
                         dateOfBirth: "",
                         mobileNumber: "",
                         urls: [],
-                    } satisfies MyInfo,
+                    },
                 };
             }
         } catch (error: any) {
@@ -65,7 +65,7 @@ export class MyInfoService implements IMyInfoService {
         }
     }
 
-    async saveMyInfo(myInfo: MyInfo): Promise<Result> {
+    async saveMyInfo(myInfo: MyInfo): Promise<Result<undefined>> {
         const methodName = "saveMyInfo";
         console.log(LOGGING_HELPER.entryLog(fileName, methodName));
         try {
