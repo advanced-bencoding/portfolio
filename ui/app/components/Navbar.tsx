@@ -1,6 +1,6 @@
 'use client';
 import React from 'react'
-import { NavButtons } from '../constants'
+import { NavButtons } from '../constants/constants'
 import Link from 'next/link'
 import clsx from 'clsx'
 import { usePathname } from 'next/navigation';
