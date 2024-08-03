@@ -13,7 +13,7 @@ export const routingErrorHandling = (
     res.send({
         success: false,
         message: err.message,
-    } satisfies Result);
+    } satisfies Result<undefined>);
 };
 
 export const requestLogger = (

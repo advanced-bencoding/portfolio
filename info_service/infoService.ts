@@ -30,7 +30,7 @@ app.all("/*", (req, res, _next) => {
     res.send({
         success: false,
         message: errorMessage,
-    } satisfies Result);
+    } satisfies Result<undefined>);
 });
 
 // start

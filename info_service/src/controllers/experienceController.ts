@@ -14,7 +14,7 @@ class ExperienceController {
         this.experienceService = experienceService;
     }
 
-    async getExperience(): Promise<Result> {
+    async getExperience(): Promise<Result<Experience[]>> {
         const methodName = "getExperience";
         console.log(LOGGING_HELPER.entryLog(fileName, methodName));
 
@@ -24,7 +24,7 @@ class ExperienceController {
         return experienceData;
     }
 
-    async saveExperience(experience: Experience): Promise<Result> {
+    async saveExperience(experience: Experience): Promise<Result<undefined>> {
         const methodName = "saveExperience";
         console.log(LOGGING_HELPER.entryLog(fileName, methodName));
         try {
@@ -59,7 +59,7 @@ class ExperienceController {
         }
     }
 
-    async deleteExperience(experienceId: string): Promise<Result> {
+    async deleteExperience(experienceId: string): Promise<Result<undefined>> {
         const methodName = "deleteExperience";
         console.log(LOGGING_HELPER.entryLog(fileName, methodName));
         try {

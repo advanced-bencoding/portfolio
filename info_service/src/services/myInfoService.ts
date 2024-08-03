@@ -2,7 +2,7 @@ import type { MyInfo } from "../models/myInfo";
 import type { Result } from "../models/result";
 import fs from "fs/promises";
 import { LOGGING_HELPER } from "./logging";
-import path from "path"
+import path from "path";
 
 const fileName = "experienceService.ts";
 
