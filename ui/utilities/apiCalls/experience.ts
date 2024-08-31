@@ -1,4 +1,4 @@
-import { Experience } from "@/app/types/experience";
+import { Experience } from "../../types/experience";
 import { Result } from "../../types/result";
 import { apiBasePath } from "./constants";
 import { fetchWrapper } from "./fetchWrapper";
