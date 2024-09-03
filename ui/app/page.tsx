@@ -1,5 +1,5 @@
-import ExtraInfoContainer from "@/components/LeftPanel/ExtraInfoContainer";
-import { ExtraInfoItemProps } from "@/components/LeftPanel/ExtraInfoItem";
+import ExtraInfoContainer from "@/components/left_panel/ExtraInfoContainer";
+import { ExtraInfoItemProps } from "@/components/left_panel/ExtraInfoItem";
 
 const extraInfoItems: ExtraInfoItemProps[] = [
   {
@@ -16,12 +16,12 @@ const extraInfoItems: ExtraInfoItemProps[] = [
 
 export default function Home() {
   return (
-    <main className="h-full">
-      <div className="flex h-full">
-        <section className="h-full min-w-96 gap-2 w-[25%]">
+    <main className="h-full justify-center flex">
+      <div className="flex h-full w-[75%]">
+        <section className="h-full min-w-96 gap-2 w-[20%]">
           <ExtraInfoContainer extraInfo={extraInfoItems}/>
         </section>
-        <section className="h-full w-[75%]">hello</section>
+        <section className="h-full w-[80%] p-5">hello</section>
       </div>
     </main>
   );

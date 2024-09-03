@@ -9,13 +9,13 @@ export interface ExtraInfoItemProps {
 const ExtraInfoItem = (props: ExtraInfoItemProps) => {
     const { items, title, useBullets } = props;
   return (
-    <div>
-        <p className='font-bold'>{title}</p>
+    <article className='bg-slate-100/60 rounded-lg p-4 shadow'>
+        <h3 className='font-bold'>{title}</h3>
         {useBullets && <ul className='list-disc list-inside'>
             {items.map(item => <li key={item}>{item}</li>)}
         </ul>}
         {!useBullets && <div>{items.map(item => <p key={item}>{item}</p>)}</div>}
-    </div>
+    </article>
   )
 }
 
