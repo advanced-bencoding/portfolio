@@ -49,6 +49,8 @@ export class MyInfoService implements IMyInfoService {
                         dateOfBirth: "",
                         mobileNumber: "",
                         urls: [],
+                        skills: [],
+                        hobbies: [],
                     },
                 };
             }

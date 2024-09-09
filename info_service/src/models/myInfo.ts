@@ -8,6 +8,8 @@ export interface MyInfo {
     mobileNumber: string;
     address: string;
     urls: UrlInfo[];
+    skills: string[];
+    hobbies: string[];
 }
 
 export interface UrlInfo {
@@ -35,5 +37,7 @@ export const MyInfoSchema = joi.object({
             "any.required": '"mobileNumber" is a required field',
         }),
     address: joi.string().required(),
-    urls: joi.array().items(UrlInfoSchema),
+    urls: joi.array().items(UrlInfoSchema).required(),
+    skills: joi.array<string>().required(),
+    hobbies: joi.array<string>().required(),
 });

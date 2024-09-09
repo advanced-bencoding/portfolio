@@ -1,5 +1,6 @@
 import ExtraInfoContainer from "@/components/left_panel/ExtraInfoContainer";
 import { ExtraInfoItemProps } from "@/components/left_panel/ExtraInfoItem";
+import InfoItem from "@/components/main_content/InfoItem";
 
 const extraInfoItems: ExtraInfoItemProps[] = [
   {
@@ -21,7 +22,9 @@ export default function Home() {
         <section className="h-full min-w-96 gap-2 w-[20%]">
           <ExtraInfoContainer extraInfo={extraInfoItems}/>
         </section>
-        <section className="h-full w-[80%] p-5">hello</section>
+        <section className="h-full w-[80%] p-5 mt-7">
+          <InfoItem flowChartMode organisation="Indus Valley Partners" place="Noida" infoItems={[]} />
+        </section>
       </div>
     </main>
   );

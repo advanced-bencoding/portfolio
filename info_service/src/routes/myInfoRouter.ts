@@ -26,6 +26,8 @@ myInfoRoutes.post("/", async (req, res) => {
                     url: item.url,
                 }) satisfies UrlInfo
         ),
+        skills: req.body.skills,
+        hobbies: req.body.hobbies
     });
     res.send(myInfoResult);
 });
