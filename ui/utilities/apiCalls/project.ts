@@ -1,4 +1,4 @@
-import { Project } from "next/dist/build/swc";
+import { Project } from "@/types/project";
 import { Result } from "../../types/result";
 import { apiBasePath } from "./constants";
 import { fetchWrapper } from "./fetchWrapper";

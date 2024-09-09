@@ -1,6 +1,13 @@
 import ExtraInfoContainer from "@/components/left_panel/ExtraInfoContainer";
 import { ExtraInfoItemProps } from "@/components/left_panel/ExtraInfoItem";
 import InfoItem from "@/components/main_content/InfoItem";
+import { Experience } from "@/types/experience";
+import { MyInfo } from "@/types/myInfo";
+import { Project } from "@/types/project";
+import { Result } from "@/types/result";
+import { getExperience } from "@/utilities/apiCalls/experience";
+import { getMyInfo } from "@/utilities/apiCalls/myInfo";
+import { getProject } from "@/utilities/apiCalls/project";
 
 const extraInfoItems: ExtraInfoItemProps[] = [
   {
@@ -15,7 +22,31 @@ const extraInfoItems: ExtraInfoItemProps[] = [
   }
 ]
 
-export default function Home() {
+function captureError(myInfoData: Result<MyInfo>, projectData: Result<Project>, experienceData: Result<Experience>) {
+  if (!myInfoData.success || !projectData.success || !experienceData.success) {
+    const errorMessages: string[] = [];
+
+    if (!myInfoData.success)
+      errorMessages.push(myInfoData.message!);
+    if (!projectData.success)
+      errorMessages.push(projectData.message!);
+    if (!experienceData.success)
+      errorMessages.push(experienceData.message!);
+
+    if (errorMessages.length > 0)
+      throw new Error(errorMessages.join(", "));
+  }
+}
+
+export default async function Home() {
+  const [myInfoData, projectData, experienceData] = await Promise.all([
+    getMyInfo(),
+    getProject(),
+    getExperience()
+  ]);
+
+  captureError(myInfoData, projectData, experienceData);
+  
   return (
     <main className="h-full justify-center flex">
       <div className="flex h-full w-[75%]">
@@ -23,7 +54,7 @@ export default function Home() {
           <ExtraInfoContainer extraInfo={extraInfoItems}/>
         </section>
         <section className="h-full w-[80%] p-5 mt-7">
-          <InfoItem flowChartMode organisation="Indus Valley Partners" place="Noida" infoItems={[]} />
+          <InfoItem accordionTitle="EXPERIENCE" infoItems={[]} />
         </section>
       </div>
     </main>

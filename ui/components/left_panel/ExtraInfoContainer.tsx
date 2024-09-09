@@ -7,7 +7,7 @@ interface ExtraInfoContainerProps {
 
 const ExtraInfoContainer = (props: ExtraInfoContainerProps) => {
   return (
-    <div className='p-5 border h-full'>
+    <div className='border h-full p-5'>
         {props.extraInfo.map(extraInfo =>
         <section key={extraInfo.title} className='mt-7'>
           <ExtraInfoItem items={extraInfo.items} title={extraInfo.title} useBullets={extraInfo.useBullets} />
